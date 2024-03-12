@@ -175,7 +175,7 @@ int main()
                 std::cout << input << '\n';
                 std::cout << fraction1 << ' ' << fraction2 << ' ' << operation;
                 std::cout << ' ' << operation.length();
-                walid(fraction1, fraction2, operation);
+                operations(fraction1, fraction2, operation);
                 break;
             case 0:
                 std::cout << "good bye\n";
