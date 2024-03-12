@@ -2,10 +2,65 @@
 #include <regex>
 #include <iterator>
 #include <cctype>
-
-void walid(std::string fraction1, std::string fraction2, std::string operation)
+double multiplication(double num1, double num2)
 {
-
+    double answer = num1 * num2;
+    return answer;
+}
+double division(double num1, double num2)
+{
+    double answer = num1 / num2;
+    return answer;
+}
+double difference(double num1, double num2)
+{
+    double answer = num1 - num2;
+    return answer;
+}
+double addition(double num1, double num2)
+{
+    double answer = num1 + num2;
+    return answer;
+}
+double fraction_to_double(std::string fraction)
+{
+    int numerataor = 0, denominator = 1;
+    // variable n is used to index if a number been added to numerator or not
+    int n = 1, number = 0;
+    for (int i = 0; i < fraction.size(); i++)
+    {
+        if (fraction[i] == '/' || (n == 1 && i < fraction.size() - 1))
+        {
+            numerataor += number;
+            n++;
+        }
+        else if (i < fraction.size() - 1 && n == 2)
+        {
+            denominator += number;
+        }
+        else number += int(fraction[i]);
+    }
+    if (denominator != 0) 
+    {
+        double num = double(numerataor) / denominator;
+        return num;
+    }
+    else return -1;
+}
+void operations(std::string fraction1, std::string fraction2, std::string operation)
+{
+    double num1 = fraction_to_double(fraction1);
+    double num2 = fraction_to_double(fraction2);
+    double ans;
+    if (num1 == -1 || num2 == -1)
+    {
+        std::cout << "\adenominator can't equal zero";
+        return;
+    }
+    else if (operation == "+") ans = addition(num1, num2);
+    else if (operation == "-") ans = difference(num1, num2);
+    else if (operation == "*") ans = multiplication(num1, num2);
+    else if (operation == "/") ans = division(num1, num2);
 }
 int getNumber(std::string input, std::string& fraction1, std::string& fraction2, std::string& operation)
 {
