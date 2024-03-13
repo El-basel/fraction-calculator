@@ -58,7 +58,12 @@ void operations(std::string& fraction1, std::string& fraction2, std::string& ope
         ans_numerator = numerator1 * denominator2;
         ans_denominator = denominator1 * numerator2;
     }
-}
+    if (ans_denominator < 0)
+    {
+        ans_denominator = -ans_denominator;
+        ans_numerator = -ans_numerator;
+    }
+}    
 
 int getNumber(std::string input, std::string& fraction1, std::string& fraction2, std::string& operation)
 {
