@@ -3,65 +3,61 @@
 #include <iterator>
 #include <cctype>
 
-double multiplication(double num1, double num2)
+void fraction_to_double(std::string fraction,int& numerator,int& denominator)
 {
-    double answer = num1 * num2;
-    return answer;
-}
-double division(double num1, double num2)
-{
-    double answer = num1 / num2;
-    return answer;
-}
-double difference(double num1, double num2)
-{
-    double answer = num1 - num2;
-    return answer;
-}
-double addition(double num1, double num2)
-{
-    double answer = num1 + num2;
-    return answer;
-}
-double fraction_to_double(std::string fraction)
-{
-    int numerataor = 0, denominator = 1;
-    // variable n is used to index if a number been added to numerator or not
-    int n = 1, number = 0;
+    fraction += ' ';
+    std::string number_string = "";
+    numerator = 0, denominator = 1;
+    int n = 1, number_int = 0;
     for (int i = 0; i < fraction.size(); i++)
     {
-        if (fraction[i] == '/' || (n == 1 && i < fraction.size() - 1))
+        if (fraction[i] == '/' || (n == 1 && fraction[i] == ' '))
         {
-            numerataor += number;
-            n++;
+            number_int = stoi(number_string);
+            numerator += number_int;
+            number_string = "";
+            ++n;
         }
-        else if (i < fraction.size() - 1 && n == 2)
+        else if ( fraction[i] == ' ' && n == 2)
         {
-            denominator += number;
+            number_int = stoi(number_string);
+            denominator = number_int;
         }
-        else number += int(fraction[i]);
+        else number_string += fraction[i];
     }
-    if (denominator != 0)
-    {
-        double num = double(numerataor) / denominator;
-        return num;
-    }
-    else return -1;
+    if (denominator == 0) numerator = denominator = -1;
 }
-void operations(std::string fraction1, std::string fraction2, std::string operation)
+void operations(std::string& fraction1, std::string& fraction2, std::string& operation)
 {
-    double num1 = fraction_to_double(fraction1);
-    double num2 = fraction_to_double(fraction2);
-    double ans;
-    if (num1 == -1 || num2 == -1)
+    int ans_numerator{ 0 }, ans_denominator{ 0 };
+    int numerator1{ 0 }, denominator1{ 0 }, numerator2{ 0 }, denominator2{ 0 };
+    fraction_to_double(fraction1 ,numerator1, denominator1);
+    fraction_to_double(fraction2, numerator2, denominator2);
+    if (denominator1 == -1 || denominator2 == -1)
     {
-        std::cout << "\adenominator can't equal zero";
+        std::cout << "\adenominator cant equal zero";
         return;
     }
-    else if (operation == "+") ans = addition(num1, num2);
-    else if (operation == "-") ans = difference(num1, num2);
-    else if (operation == "*") ans = multiplication(num1, num2);
-    else if (operation == "/") ans = division(num1, num2);
+    else if (operation == "+")
+    {
+        ans_numerator = denominator2 * numerator1 + denominator1 * numerator2;
+        ans_denominator = denominator1 * denominator2;
+    }
+    else if (operation == "-")
+    {
+        ans_numerator = denominator2 * numerator1 - denominator1 * numerator2;
+        ans_denominator = denominator1 * denominator2;
+    }
+    else if (operation == "*")
+    {
+         ans_numerator = numerator1 * numerator2;
+         ans_denominator = denominator1 * denominator2;
+    }
+    else if (operation == "/")
+    {
+        ans_numerator = numerator1 * denominator2;
+        ans_denominator = denominator1 * numerator2;
+    }
 }
 
 int getNumber(std::string input, std::string& fraction1, std::string& fraction2, std::string& operation)
@@ -174,8 +170,8 @@ int main()
                     fraction1 = fraction2 = "";
                     continue;
                 }
-                std::cout << input << '\n';
-                std::cout << fraction1 << ' ' << fraction2 << ' ' << operation << '\n';
+                //std::cout << input << '\n';
+                //std::cout << fraction1 << ' ' << fraction2 << ' ' << operation << '\n';
                 operations(fraction1, fraction2, operation);
                 break;
             case 0:
