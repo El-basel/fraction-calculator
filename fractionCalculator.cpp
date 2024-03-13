@@ -2,6 +2,7 @@
 #include <regex>
 #include <iterator>
 #include <cctype>
+
 double multiplication(double num1, double num2)
 {
     double answer = num1 * num2;
@@ -40,7 +41,7 @@ double fraction_to_double(std::string fraction)
         }
         else number += int(fraction[i]);
     }
-    if (denominator != 0) 
+    if (denominator != 0)
     {
         double num = double(numerataor) / denominator;
         return num;
@@ -62,29 +63,30 @@ void operations(std::string fraction1, std::string fraction2, std::string operat
     else if (operation == "*") ans = multiplication(num1, num2);
     else if (operation == "/") ans = division(num1, num2);
 }
+
 int getNumber(std::string input, std::string& fraction1, std::string& fraction2, std::string& operation)
 {
     std::smatch match{};
     input.push_back(' ');
-    std::string originalInput{input};
+    std::string originalInput{ input };
     std::regex fractionPattern("([-]?[0-9]+/[-]?[0-9]+|[-]?[0-9]+)");
     std::regex operationPatter("\\s[/+*-]\\s");
-    std::regex nmrtrWithoutDeno{"[-]?[0-9]+/[-]?[^-0-9]"};
+    std::regex nmrtrWithoutDeno{ "[-]?[0-9]+/[-]?[^-0-9]" };
 
-    while(std::regex_search(input,match,fractionPattern))
+    while (std::regex_search(input, match, fractionPattern))
     {
-        if(std::regex_search(input,nmrtrWithoutDeno))
+        if (std::regex_search(input, nmrtrWithoutDeno))
         {
             std::cout << "Invalid input, numerator without denominator\n";
             return -1;
         }
-        if(fraction1.length() == 0)
+        if (fraction1.length() == 0)
         {
             fraction1 = match[0];
             input = match.suffix();
             continue;
         }
-        if(fraction1.length() != 0)
+        if (fraction1.length() != 0)
         {
             fraction2 = match[0];
             input = match.suffix();
@@ -93,7 +95,7 @@ int getNumber(std::string input, std::string& fraction1, std::string& fraction2,
     }
     match = {};
     input = originalInput;
-    if(std::regex_search(input,match,operationPatter))
+    if (std::regex_search(input, match, operationPatter))
     {
         operation = match[0];
     }
@@ -119,14 +121,14 @@ int getNumber(std::string input, std::string& fraction1, std::string& fraction2,
 
 int validateInput(std::string input)
 {
-    std::regex exit{"^exit[ ]*", std::regex::icase};
+    std::regex exit{ "^exit[ ]*", std::regex::icase };
     std::smatch match{};
-    if(std::regex_match(input,match,exit))
+    if (std::regex_match(input, match, exit))
     {
         return 0;
     }
-    std::regex reg{"[^[-]?0-9\\s/+*-]+"};
-    if(std::regex_search(input,match,reg))
+    std::regex reg{"[^-?0-9\\s/+*-]+" };
+    if (std::regex_search(input, match, reg))
     {
         std::cout << "Please enter a valid input\n";
         std::cout << "Input should contain two rational numbers only ";
@@ -134,14 +136,14 @@ int validateInput(std::string input)
         std::cout << "or enter the word \"exit\" only to exit the program\n";
         return -1;
     }
-    if(!std::regex_search(input,std::regex("^([-]?[0-9]+)")))
+    if (!std::regex_search(input, std::regex("^([-]?[0-9]+)")))
     {
         std::cout << "Please enter a valid input\n";
         std::cout << "Input should start with a number\n";
         return -1;
     }
-    std::regex operations{"([/+*]{2,}|[-]{2,})"};
-    if(std::regex_search(input,match,operations))
+    std::regex operations{ "([/+*]{2,}|[-]{2,})" };
+    if (std::regex_search(input, match, operations))
     {
         std::cout << "Please enter a valid input\n";
         std::cout << match.prefix() << '[' << match.str() << ']' << match.suffix();
@@ -161,20 +163,19 @@ int main()
     while (true)
     {
         std::cout << "Please enter a rational number operations (or exit)\n";
-        std::getline(std::cin , input);
+        std::getline(std::cin, input);
 
         switch (validateInput(input)) {
             case -1:
                 continue;
             case 1:
-                if(getNumber(input,fraction1,fraction2,operation) == -1)
+                if (getNumber(input, fraction1, fraction2, operation) == -1)
                 {
                     fraction1 = fraction2 = "";
                     continue;
                 }
                 std::cout << input << '\n';
-                std::cout << fraction1 << ' ' << fraction2 << ' ' << operation;
-                std::cout << ' ' << operation.length();
+                std::cout << fraction1 << ' ' << fraction2 << ' ' << operation << '\n';
                 operations(fraction1, fraction2, operation);
                 break;
             case 0:
@@ -184,3 +185,4 @@ int main()
         break;
     }
 }
+
