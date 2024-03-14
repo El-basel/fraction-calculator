@@ -3,6 +3,31 @@
 #include <iterator>
 #include <cctype>
 
+void mixedNumberOutput(int numerator, int denominator) {
+    
+    if (numerator > denominator) {
+        int result = 0, new_num;
+        new_num = numerator;
+
+        while (new_num >= denominator) {
+            new_num -= denominator;
+            result += 1;
+        }
+    
+        std::cout << result << " " << new_num << "/" << denominator;
+    }
+}
+
+void simplify(int numerator, int denominator) {
+    for (int i = denominator; i > 0; i--) {
+        if (numerator % i == 0 && denominator % i == 0) {
+            numerator /= i;
+            denominator /= i;
+        }
+    }
+    mixedNumberOutput(numerator, denominator);
+}
+
 void fraction_to_double(std::string fraction,int& numerator,int& denominator)
 {
     fraction += ' ';
@@ -63,6 +88,7 @@ void operations(std::string& fraction1, std::string& fraction2, std::string& ope
         ans_denominator = -ans_denominator;
         ans_numerator = -ans_numerator;
     }
+    simplify(ans_numerator, ans_denominator);
 }    
 
 int getNumber(std::string input, std::string& fraction1, std::string& fraction2, std::string& operation)
@@ -186,4 +212,3 @@ int main()
         break;
     }
 }
-
