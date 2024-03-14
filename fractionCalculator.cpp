@@ -13,8 +13,15 @@ void mixedNumberOutput(int numerator, int denominator) {
             new_num -= denominator;
             result += 1;
         }
-    
-        std::cout << result << " " << new_num << "/" << denominator;
+        if (new_num != 0){
+            std::cout << result << " " << new_num << "/" << denominator;
+        }
+        else{
+            std::cout << result;
+        }
+    }
+    else{
+        std::cout << numerator << "/" << denominator;
     }
 }
 
