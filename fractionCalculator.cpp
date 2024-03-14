@@ -46,14 +46,20 @@ void simplify(int numerator, int denominator) {
     mixedNumberOutput(numerator, denominator);
 }
 
-void fraction_to_double(std::string fraction,int& numerator,int& denominator)
+void fraction_to_ints(std::string fraction,int& numerator,int& denominator)
 {
+    //added a space so it can be easily known if the loop reached the end or not
     fraction += ' ';
+    // collects the numbers to add it to either numerator or denominator
     std::string number_string = "";
+    // denominator equals 1 so if the number is an int it will do the operations right
     numerator = 0, denominator = 1;
+    // n is a vriable used as a refrence if we added a numerator or not and number_int is where we convert strings to integers 
     int n = 1, number_int = 0;
     for (int i = 0; i < fraction.size(); i++)
     {
+        // if the loop stopped on a '/' it means the numerator ended
+        // but if n is 1 and it found a ' ' then it means the number is an integer 
         if (fraction[i] == '/' || (n == 1 && fraction[i] == ' '))
         {
             number_int = stoi(number_string);
@@ -61,6 +67,7 @@ void fraction_to_double(std::string fraction,int& numerator,int& denominator)
             number_string = "";
             ++n;
         }
+        // if n is 2 it means we added a numerator and we need to add a denominator
         else if ( fraction[i] == ' ' && n == 2)
         {
             number_int = stoi(number_string);
@@ -68,19 +75,22 @@ void fraction_to_double(std::string fraction,int& numerator,int& denominator)
         }
         else number_string += fraction[i];
     }
+    // used to indentify an error
     if (denominator == 0) numerator = denominator = -1;
 }
 void operations(std::string& fraction1, std::string& fraction2, std::string& operation)
 {
     int ans_numerator{ 0 }, ans_denominator{ 0 };
     int numerator1{ 0 }, denominator1{ 0 }, numerator2{ 0 }, denominator2{ 0 };
-    fraction_to_double(fraction1 ,numerator1, denominator1);
-    fraction_to_double(fraction2, numerator2, denominator2);
+    fraction_to_ints(fraction1 ,numerator1, denominator1);
+    fraction_to_ints(fraction2, numerator2, denominator2);
+    // an error found in the fraction to int function
     if (denominator1 == -1 || denominator2 == -1)
     {
         std::cout << "\adenominator cant equal zero";
         return;
     }
+    //operations are done as we do it manually
     else if (operation == "+")
     {
         ans_numerator = denominator2 * numerator1 + denominator1 * numerator2;
