@@ -5,6 +5,24 @@
 // ID1: 20230376, Did the input validation and the extraction of the numbers and the operation
 // ID2: 20230517,
 // ID3: 20230278,
+
+/*
+ * Algorithm:
+ * define user_input
+ * get input
+ * set user_input to input
+ * if user_input == "exit":
+ *  exit the program
+ * endif
+ * while user_input contains characters or symbols not allowed:
+ *  get input
+ *  set user_input to input
+ * endwhile
+ * define fraction1 and fraction2 and operation_symbol
+ * extract first operand in fraction1
+ * extract second operand in fraction2
+ * extract operation in operation_symbol
+ * */
 #include <iostream>
 #include <regex>
 #include <iterator>
