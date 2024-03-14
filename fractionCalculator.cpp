@@ -27,18 +27,18 @@
  * if operation == "+"
  * multiply denominator1 and 2 then set it to ans_denominator
  * multiply denominator1 to numerator2 and denominator2 to numerator 1 then add them and set them to ans_numerator
- * endif
  * else if operation == "-"
  * multiply denominator1 and 2 then set it to ans_denominator
  * multiply denominator1 to numerator2 and denominator2 to numerator 1 then subtract them and set them to ans_numerator
- * endif
  * else if operation == "*"
  * multiply numerator1 and 2 and set them to ans_numerator
  * multiply denominator1 and 2 and set them to ans_denominator
- * endif
  * else if operation == * / *
  * multiply numerator1 to denominator2 and set them to ans_numerator
  * multiply numerator2 to denominator1 and set them to ans_denominator
+ * else if denominator1 or 2 equal to zero
+ * return to get user input
+ * endif
  */
 
 #include <iostream>
