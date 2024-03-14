@@ -1,9 +1,9 @@
 // File: CS112_A2_T3_S1_20230376_20230517_20230278
 // Purpose: A calculator that can take whole integers of fractions and do operations on them
-// Author: Mahmoud Mohamed El-Basel,
-// Emails: modyelbasel50@gmail.com,
+// Author: Mahmoud Mohamed El-Basel,Youssef Walid Mohamed Shaker
+// Emails: modyelbasel50@gmail.com,youssefwalid0505@gmail.com
 // ID1: 20230376, Did the input validation and the extraction of the numbers and the operation
-// ID2: 20230517,
+// ID2: 20230517, Did the operations and the extraction of the numerators and denominators
 // ID3: 20230278,
 
 /*
@@ -22,7 +22,25 @@
  * extract first operand in fraction1
  * extract second operand in fraction2
  * extract operation in operation_symbol
- * */
+ * extract numerator1 and denominator1 from fraction1 
+ * extract numerator2 and denominator2 from fraction2
+ * if operation == "+"
+ * multiply denominator1 and 2 then set it to ans_denominator
+ * multiply denominator1 to numerator2 and denominator2 to numerator 1 then add them and set them to ans_numerator
+ * endif
+ * else if operation == "-"
+ * multiply denominator1 and 2 then set it to ans_denominator
+ * multiply denominator1 to numerator2 and denominator2 to numerator 1 then subtract them and set them to ans_numerator
+ * endif
+ * else if operation == "*"
+ * multiply numerator1 and 2 and set them to ans_numerator
+ * multiply denominator1 and 2 and set them to ans_denominator
+ * endif
+ * else if operation == * / *
+ * multiply numerator1 to denominator2 and set them to ans_numerator
+ * multiply numerator2 to denominator1 and set them to ans_denominator
+ */
+
 #include <iostream>
 #include <regex>
 #include <iterator>
