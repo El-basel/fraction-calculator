@@ -20,6 +20,10 @@ void mixedNumberOutput(int numerator, int denominator) {
             std::cout << result;
         }
     }
+    else if (denominator == 1)
+    {
+        std::cout << numerator;
+    }
     else{
         std::cout << numerator << "/" << denominator;
     }
