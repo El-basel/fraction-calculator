@@ -4,7 +4,7 @@
 // Emails: modyelbasel50@gmail.com, youssefwalid0505@gmail.com, xelafares2006@gmail.com
 // ID1: 20230376, Did the input validation and the extraction of the numbers and the operation
 // ID2: 20230517, Did the operations and the extraction of the numerators and denominators
-// ID3: 20230278, did the simplification of the result and outputting the result
+// ID3: 20230278, Did the simplification of the result and outputting the result
 
 /*
  * Algorithm:
