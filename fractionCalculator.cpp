@@ -1,10 +1,10 @@
 // File: CS112_A2_T3_S1_20230376_20230517_20230278
 // Purpose: A calculator that can take whole integers of fractions and do operations on them
-// Author: Mahmoud Mohamed El-Basel,Youssef Walid Mohamed Shaker
-// Emails: modyelbasel50@gmail.com,youssefwalid0505@gmail.com
+// Author: Mahmoud Mohamed El-Basel, Youssef Walid Mohamed Shaker, Fares Mohammed Abdulhamid Sarhan
+// Emails: modyelbasel50@gmail.com, youssefwalid0505@gmail.com, xelafares2006@gmail.com
 // ID1: 20230376, Did the input validation and the extraction of the numbers and the operation
 // ID2: 20230517, Did the operations and the extraction of the numerators and denominators
-// ID3: 20230278,
+// ID3: 20230278, did the simplification of the result and outputting the result
 
 /*
  * Algorithm:
@@ -39,6 +39,25 @@
  * else if denominator1 or 2 equal to zero
  *  return to get user input
  * endif
+ * simplify the result after operation:
+ * for i = denominator until i = 1
+ *  if numerator and denominator % i == 0
+ *   numerator /= i
+ *   denominator /= i
+ * convert simplified result to mixed number format:
+ * if numerator > denominator
+ *  new numerator = numerator
+ *  while new numerator >= denominator:
+ *   new numerator -= denominator
+ *   result += 1 (where result is the int part of the mixed number)
+ *  prevent the printing of 0/1 if there is no remainder:
+ *  if new numerator != 0:
+ *   output result and the remaining fraction
+ *  else:
+ *   output result only
+ *  prevent printing of 1 in the denominator:
+ *  else if denom: == 1 output result only
+ *  else output numerator/denominator
  */
 
 #include <iostream>
@@ -47,32 +66,41 @@
 #include <cctype>
 
 void mixedNumberOutput(int numerator, int denominator) {
-    
+    //optimizing output for mixed number format
     if (numerator > denominator) {
+        //introduce result which will act as the integer part of the number, 
+        //and new numerator which we will use to calculate the fraction part
         int result = 0, new_num;
         new_num = numerator;
 
+        //while loop to calculate the whole and fraction part by subtracting new
+        //numerator from denominator and adding 1 to the integer result
         while (new_num >= denominator) {
             new_num -= denominator;
             result += 1;
         }
+        //output answer as number and fraction if numerator is not 0
         if (new_num != 0){
             std::cout << result << " " << new_num << "/" << denominator;
         }
+        //if numerator is 0, output result only to prevent 0/numerator fraction from printing
         else{
             std::cout << result;
         }
     }
+    //if denominator = 1, then output numerator only
     else if (denominator == 1)
     {
         std::cout << numerator;
     }
+    //if denom is neither 0 nor less than numerator, theres nothing for simplification and output numerator/denominator
     else{
         std::cout << numerator << "/" << denominator;
     }
 }
 
 void simplify(int numerator, int denominator) {
+    //loop to find the greatest common divisior and divide both numerator and denominator to simplify
     for (int i = denominator; i > 0; i--) {
         if (numerator % i == 0 && denominator % i == 0) {
             numerator /= i;
