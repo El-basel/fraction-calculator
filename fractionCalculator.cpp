@@ -1,3 +1,4 @@
+// FCAI – Structured Programming – 2024 - Assignment 2
 // File: CS112_A2_T3_S1_20230376_20230517_20230278
 // Purpose: A calculator that can take whole integers of fractions and do operations on them
 // Author: Mahmoud Mohamed El-Basel, Youssef Walid Mohamed Shaker, Fares Mohammed Abdulhamid Sarhan
