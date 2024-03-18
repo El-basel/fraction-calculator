@@ -132,6 +132,11 @@ void operations(std::string& fraction1, std::string& fraction2, std::string& ope
         ans_denominator = -ans_denominator;
         ans_numerator = -ans_numerator;
     }
+    if (ans_denominator == 0)
+    {
+        std::cout << "\anumerator of second fraction cant equal zero when dividing";
+        return;
+    }
     simplify(ans_numerator, ans_denominator);
 }    
 
