@@ -9,56 +9,7 @@
 
 /*
  * Algorithm:
- * define user_input
- * get input
- * set user_input to input
- * if user_input == "exit":
- *  exit the program
- * endif
- * while user_input contains characters or symbols not allowed:
- *  get input
- *  set user_input to input
- * endwhile
- * define fraction1 and fraction2 and operation_symbol
- * extract first operand in fraction1
- * extract second operand in fraction2
- * extract operation in operation_symbol
- * extract numerator1 and denominator1 from fraction1 
- * extract numerator2 and denominator2 from fraction2
- * if operation == "+"
- *  multiply denominator1 and 2 then set it to ans_denominator
- *  multiply denominator1 to numerator2 and denominator2 to numerator 1 then add them and set them to ans_numerator
- * else if operation == "-"
- *  multiply denominator1 and 2 then set it to ans_denominator
- *  multiply denominator1 to numerator2 and denominator2 to numerator 1 then subtract them and set them to ans_numerator
- * else if operation == "*"
- *  multiply numerator1 and 2 and set them to ans_numerator
- *  multiply denominator1 and 2 and set them to ans_denominator
- * else if operation == * / *
- *  multiply numerator1 to denominator2 and set them to ans_numerator
- *  multiply numerator2 to denominator1 and set them to ans_denominator
- * else if denominator1 or 2 equal to zero
- *  return to get user input
- * endif
- * simplify the result after operation:
- * for i = denominator until i = 1
- *  if numerator and denominator % i == 0
- *   numerator /= i
- *   denominator /= i
- * convert simplified result to mixed number format:
- * if numerator > denominator
- *  new numerator = numerator
- *  while new numerator >= denominator:
- *   new numerator -= denominator
- *   result += 1 (where result is the int part of the mixed number)
- *  prevent the printing of 0/1 if there is no remainder:
- *  if new numerator != 0:
- *   output result and the remaining fraction
- *  else:
- *   output result only
- *  prevent printing of 1 in the denominator:
- *  else if denom: == 1 output result only
- *  else output numerator/denominator
+ * https://docs.google.com/document/d/18YiSzZlwrsSS9gqG8L9TqMsVBpW8iT77TY59WZIpWFs/edit?usp=sharing
  */
 
 #include <iostream>
